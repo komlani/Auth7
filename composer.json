@@ -14,7 +14,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "delight-im/auth": "dev-master",
+        "symfony/mailer": "5.4.x-dev"
+    },
     "autoload":
     {
         "psr-4":
