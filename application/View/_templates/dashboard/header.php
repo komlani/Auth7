@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo URL; ?>img/favicon.ico" type="image/ico" />
     
-    <title>Login</title>
+    <title><?php echo APP_NAME ?></title>
 
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/font-awesome/css/font-awesome.min.css">
