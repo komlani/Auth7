@@ -13,7 +13,6 @@ class LoginService
     public function __construct()
     {
         //TODO: check if user is already logged in
-
         $this->model = new RegisterModel();
     }
 
@@ -57,6 +56,17 @@ class LoginService
             } catch (\Delight\Auth\TooManyRequestsException $e) {
                 die('Too many requests');
             }
+        }
+    }
+
+    public function logout()
+    {
+        try {
+            $this->model->auth->logOutEverywhere();
+            $this->model->auth->destroySession();
+        } catch (\Delight\Auth\NotLoggedInException $e) {
+        } finally {
+            Helper::redirect('login');
         }
     }
 }

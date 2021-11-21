@@ -33,15 +33,15 @@
 
                         <div class="col-md-6 text-left">
 
-                        <label for="remember_me">
+                            <label for="remember_me">
 
-                            <div class="checkbox">
-                                <div class="icheckbox_flat-green" style="position: relative;">
-                                    <input type="checkbox" name="remember_me" value="1" class="flat" id="remember_me" style="position: absolute; opacity: 0;">
-                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                </div> Remember me
-                            </div>
-                        </label>
+                                <div class="checkbox">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" name="remember_me" value="1" class="flat" id="remember_me" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                    </div> Remember me
+                                </div>
+                            </label>
 
 
                         </div>
@@ -63,6 +63,15 @@
                             <div class="row">
                                 <div class="col-md-12 p-2">
                                     <span class="text-danger"><?php echo $_SESSION['connexion_error'] ?></span>
+                                </div>
+                            </div>
+                        <?php  } ?>
+
+                        <?php if (isset($_SESSION['password_reseted'])) { ?>
+
+                            <div class="row">
+                                <div class="col-md-12 p-2">
+                                    <span class="text-info">Password reseted, login now ! </span>
                                 </div>
                             </div>
                         <?php  } ?>

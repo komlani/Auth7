@@ -38,6 +38,26 @@
 
                     <div class="separator">
 
+                        <?php if (isset($_SESSION['forgot_password_email_not_sent'])) { ?>
+
+                            <div class="row">
+                                <div class="col-md-12 p-2">
+                                    <span class="text-danger">We got an internal error, retry later</span>
+                                </div>
+                            </div>
+
+                        <?php  } ?>
+
+                        <?php if (isset($_SESSION['forgot_password_email_sent'])) { ?>
+
+                            <div class="row">
+                                <div class="col-md-12 p-2">
+                                    <span class="text-info">Check your mails to recover your login credentials</span>
+                                </div>
+                            </div>
+
+                        <?php  } ?>
+
                         <p class="change_link">Remember credentials ?
                             <a href="<?php echo URL . 'login' ?>" class="link-primary">Login</a>
                         </p>
@@ -65,5 +85,6 @@
     unset(
         $_SESSION['validated'],
         $_SESSION['errors'],
-
+        $_SESSION['forgot_password_email_sent'],
+        $_SESSION['forgot_password_email_not_sent'],
     );

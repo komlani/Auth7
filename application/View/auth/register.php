@@ -87,7 +87,7 @@
 
                         <?php  } ?>
 
-                        <?php if (isset($_SESSION['Email_verified'])) { ?>
+                        <?php if (isset($_SESSION['email_verified'])) { ?>
 
                             <div class="row">
                                 <div class="col-md-12 p-2">

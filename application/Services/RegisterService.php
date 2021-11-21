@@ -44,7 +44,7 @@ class RegisterService
                     null,
 
                     function ($selector, $token) {
-                        $this->email->sendEmailVerificationLink($selector, $token, $_POST['email']);
+                        $this->email->sendVerificationEmail($selector, $token, $_POST['email']);
                     }
                 );
 
@@ -69,7 +69,6 @@ class RegisterService
             $this->model->auth->confirmEmail($data['selector'], $data['token']);
             $_SESSION['email_verified'] = true;
             Helper::redirect('register');
-            echo 'Email address has been verified';
         } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) { //TODO: manage email confirmation errors messages
             die('Invalid token');
         } catch (\Delight\Auth\TokenExpiredException $e) {

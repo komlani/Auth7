@@ -28,12 +28,6 @@ class LoginController
 
     public function destroy()
     {
-        session_start();
-
-        /** unset all variables */
-        $_SESSION = array();
-
-        session_destroy();
-        redirect('login');
+        $this->service->logout();
     }
 }
