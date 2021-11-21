@@ -1,11 +1,16 @@
 <?php
 
-namespace Mini\Controller;
+namespace Auth7\Controller;
+
+use Auth7\Services\ConfirmPasswordService;
 
 class ConfirmPasswordController
 {
+    private $service;
+
     public function __construct()
     {
+        $this->service = new ConfirmPasswordService();
     }
 
     public function index()
@@ -13,5 +18,10 @@ class ConfirmPasswordController
         view('_templates/auth/header');
         view('auth/confirm-password');
         view('_templates/auth/footer');
+    }
+
+    public function store()
+    {
+        $this->service->manageRequest($_POST);
     }
 }

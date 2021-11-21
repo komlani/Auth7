@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/iCheck/skins/flat/green.css">
-    <link rel="stylesheet" href="<?php echo URL; ?>gentelella/build/css/custom.min.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>gentelella/build/css/custom.css">
     <link rel="stylesheet" href="<?php echo URL; ?>css/styles.css">
 
 </head>

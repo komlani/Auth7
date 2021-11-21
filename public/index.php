@@ -16,5 +16,16 @@ define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 require ROOT . 'vendor/autoload.php';
 require APP . 'Config/Config.php';
 
-use Mini\Core\Application;
+use Auth7\Core\Application;
+use PHPTokenGenerator\TokenGenerator;
+
+/** define session token 
+ * if not exist with 30 min lifetime **/
+session_set_cookie_params(900);
+session_start();
+if(!isset($_SESSION['auth7_token']))
+{
+    $_SESSION['auth7_token'] = (new TokenGenerator)->generate() ;
+}
+
 $app = new Application();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mini\Controller;
+namespace Auth7\Controller;
 
 function view(string $file, array $data = []){
     extract($data);

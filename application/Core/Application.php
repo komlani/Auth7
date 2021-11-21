@@ -1,8 +1,10 @@
 <?php
 
-namespace Mini\Core;
+namespace Auth7\Core;
 
-use function Mini\Controller\redirect;
+use PHPTokenGenerator\TokenGenerator;
+
+use function Auth7\Controller\redirect;
 
 require APP . 'Core/CoreFunctions.php';
 
@@ -17,12 +19,12 @@ class Application
         $this->splitUrl();
         if (!$this->url_controller) {
 
-            $page = new \Mini\Controller\HomeController();
+            $page = new \Auth7\Controller\HomeController();
             $page->index();
 
         } elseif (file_exists(APP . 'Controller/' . ucfirst($this->url_controller) . 'Controller.php')) {
 
-            $controller = "\\Mini\\Controller\\" . ucfirst($this->url_controller) . 'Controller';
+            $controller = "\\Auth7\\Controller\\" . ucfirst($this->url_controller) . 'Controller';
             $this->url_controller = new $controller();
 
             if (method_exists($this->url_controller, $this->url_action) &&
@@ -38,12 +40,12 @@ class Application
                 if (strlen($this->url_action) == 0) {
                     $this->url_controller->index();
                 } else {
-                    $page = new \Mini\Controller\ErrorController();
+                    $page = new \Auth7\Controller\ErrorController();
                     redirect('error');
                 }
             }
         } else {
-            $page = new \Mini\Controller\ErrorController();
+            $page = new \Auth7\Controller\ErrorController();
             redirect('error');
         }
     }

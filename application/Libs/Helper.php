@@ -1,6 +1,6 @@
 <?php
 
-namespace Mini\Libs;
+namespace Auth7\Libs;
 
 class Helper
 {
@@ -38,5 +38,9 @@ class Helper
         $raw_sql = preg_replace($keys, $values, $raw_sql, 1, $count);
 
         return $raw_sql;
+    }
+
+    static public function redirect($path) {
+        header('location: ' . URL . $path);
     }
 }
