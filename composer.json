@@ -16,13 +16,15 @@
     "minimum-stability": "dev",
     "require": {
         "delight-im/auth": "dev-master",
-        "symfony/mailer": "5.4.x-dev"
+        "symfony/mailer": "5.4.x-dev",
+        "rakit/validation": "dev-master",
+        "gsylvestre/php-token-generator": "dev-master"
     },
     "autoload":
     {
         "psr-4":
         {
-            "Mini\\" : "application/"
+            "Auth7\\" : "application/"
         }
     }
 }

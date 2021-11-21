@@ -1,6 +1,6 @@
 <?php
 
-namespace Mini\Controller;
+namespace Auth7\Controller;
 
 class DashboardController
 {

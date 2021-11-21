@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css">
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="<?php echo URL; ?>gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo URL; ?>gentelella/build/css/custom.min.css">
+    <link rel="stylesheet" href="<?php echo URL; ?>gentelella/build/css/custom.css">
     <link rel="stylesheet" href="<?php echo URL; ?>css/styles.css">
     
 </head>

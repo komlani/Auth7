@@ -6,7 +6,7 @@
 
             <section class="login_content">
 
-                <form>
+                <form action="<?php echo URL ?>forgotPassword/store" method="POST">
 
                     <h1>Forgot Password</h1>
 
@@ -14,8 +14,15 @@
                         Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
                     </div>
 
+                    <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?>">
+
                     <div class="mt-2">
-                        <input type="email" class="form-control" placeholder="Email" autofocus required />
+                        <input type="email" name="email" value="<?php echo $_SESSION['validated']['email'] ?? '' ?>" class="form-control <?php if (isset($_SESSION['errors']['email'])) {
+                                                                                                                                                echo 'mb-0';
+                                                                                                                                            } else {
+                                                                                                                                                echo 'mb-2';
+                                                                                                                                            } ?>" placeholder="Email" autofocus required />
+                        <div class="text-danger text-left mb-1"><?php echo $_SESSION['errors']['email'] ?? '' ?></div>
                     </div>
 
                     <div class="row">
@@ -52,3 +59,11 @@
         </div>
 
     </div>
+
+    <?php
+
+    unset(
+        $_SESSION['validated'],
+        $_SESSION['errors'],
+
+    );

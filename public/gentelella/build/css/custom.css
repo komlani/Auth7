@@ -4089,7 +4089,7 @@ a.hiddenanchor {
   text-shadow: 0 1px 0 #fff;
   min-width: 280px; }
 
-.login_content a,
+.login_content a, button
 .login_content .btn-default:hover {
   text-decoration: none; }
 

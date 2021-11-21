@@ -6,26 +6,43 @@
 
             <section class="login_content">
 
-                <form>
+                <form action="<?php echo URL  ?>login/store" method="POST">
 
                     <h1>Login</h1>
 
+                    <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?>">
+
                     <div>
-                        <input type="email" class="form-control" placeholder="Email" autofocus required />
+                        <input type="email" name="email" value="<?php echo $_SESSION['validated']['email'] ?? '' ?>" class="form-control <?php if (isset($_SESSION['errors']['password'])) {
+                                                                                                                                                echo 'mb-0';
+                                                                                                                                            } else {
+                                                                                                                                                echo 'mb-2';
+                                                                                                                                            } ?>" placeholder="Email" autocomplete="off" autofocus required />
+                        <div class="text-danger text-left mb-1"><?php echo $_SESSION['errors']['email'] ?? '' ?></div>
                     </div>
                     <div>
-                        <input type="password" class="form-control" placeholder="Password" required />
+                        <input type="password" name="password" class="form-control <?php if (isset($_SESSION['errors']['password'])) {
+                                                                                        echo 'mb-0';
+                                                                                    } else {
+                                                                                        echo 'mb-2';
+                                                                                    } ?> " autocomplete="off" placeholder="Password" required />
+                        <div class="text-danger text-left mb-1"><?php echo $_SESSION['errors']['password'] ?? '' ?></div>
                     </div>
 
                     <div class="row">
 
                         <div class="col-md-6 text-left">
 
+                        <label for="remember_me">
+
                             <div class="checkbox">
-                                <label class="">
-                                    <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Remember me
-                                </label>
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" name="remenber_me" value="1" class="flat" id="remember_me" style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div> Remember me
                             </div>
+                        </label>
+
 
                         </div>
 
@@ -40,6 +57,15 @@
                     <div class="clearfix"></div>
 
                     <div class="separator">
+
+                        <?php if (isset($_SESSION['connexion_error'])) { ?>
+
+                            <div class="row">
+                                <div class="col-md-12 p-2">
+                                    <span class="text-danger"><?php echo $_SESSION['connexion_error'] ?></span>
+                                </div>
+                            </div>
+                        <?php  } ?>
 
                         <p class="change_link">
                             <a href="<?php echo URL; ?>forgotPassword" class="link-primary mr-3">Forgot Password ?</a>
@@ -63,3 +89,11 @@
         </div>
 
     </div>
+
+    <?php
+
+    unset(
+        $_SESSION['validated'],
+        $_SESSION['errors'],
+        $_SESSION['connexion_error'],
+    );
