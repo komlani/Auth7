@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
 use Auth7\Services\ResetPasswordService;
 
 class ResetPasswordController
@@ -9,13 +10,16 @@ class ResetPasswordController
     private $service;
 
     public function __construct()
-    {
+    {     
+        Helper::isLoggedIn();   
+        // Helper::canResetPassword($_GET);
         $this->service = new ResetPasswordService();
     }
-
+    
     //TODO: middlware to prevent direct access reset pass access
     public function index()
     {
+
         view('_templates/auth/header');
         view('auth/reset-password', );
         view('_templates/auth/footer');

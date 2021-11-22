@@ -2,10 +2,12 @@
 
 namespace Auth7\Libs;
 
+use Auth7\Core\Model;
+
 class Helper
 {
-    static public function debugPDO($raw_sql, $parameters) {
-
+    static public function debugPDO($raw_sql, $parameters)
+    {
         $keys = array();
         $values = $parameters;
 
@@ -40,7 +42,33 @@ class Helper
         return $raw_sql;
     }
 
-    static public function redirect($path) {
+    static public function redirect($path)
+    {
         header('location: ' . URL . $path);
+    }
+
+    static public function isLoggedIn()
+    {
+        if ((new Model())->auth->isLoggedIn())
+            self::redirect('dashboard');
+    }
+
+    static public function isLoggedOut()
+    {
+        if (!(new Model())->auth->isLoggedIn())
+            self::redirect('login');
+    }
+
+    static public function canResetPassword($data)
+    {
+        // if (isset($data['selector']) && isset($data['token'])) {
+        //     if (!(new Model())->auth->canResetPassword($data['selector'], $data['token'])) {
+        //         var_dump('hi');exit;
+        //         self::redirect('login');
+        //     }
+        // } else {
+        //     var_dump('ho');exit;
+        //     self::redirect('login');
+        // }
     }
 }

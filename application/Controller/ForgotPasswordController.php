@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
 use Auth7\Services\ForgotPasswordService;
 
 class ForgotPasswordController
@@ -10,6 +11,7 @@ class ForgotPasswordController
 
     public function __construct()
     {
+        Helper::isLoggedIn();
         $this->service = new ForgotPasswordService();
     }
 

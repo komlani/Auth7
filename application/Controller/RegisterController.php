@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
 use Auth7\Services\RegisterService;
 
 class RegisterController
@@ -10,6 +11,8 @@ class RegisterController
 
     public function __construct()
     {
+        Helper::isLoggedIn();
+         
         $this->service = new RegisterService();
     }
     

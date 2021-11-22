@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
 use Auth7\Services\VerifyEmailService;
 
 class VerifyEmailController
@@ -10,6 +11,8 @@ class VerifyEmailController
 
     public function __construct()
     {
+        Helper::isLoggedOut();
+        
         $this->service = new VerifyEmailService();
     }
 

@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
 use Auth7\Services\ConfirmPasswordService;
 
 class ConfirmPasswordController
@@ -10,6 +11,7 @@ class ConfirmPasswordController
 
     public function __construct()
     {
+        Helper::isLoggedOut();
         $this->service = new ConfirmPasswordService();
     }
 

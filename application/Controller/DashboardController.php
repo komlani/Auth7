@@ -2,10 +2,13 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Helper;
+
 class DashboardController
 {
     public function __construct()
     {  
+        Helper::isLoggedOut();  
     }
     
     public function index()

@@ -12,7 +12,6 @@ class LoginService
 
     public function __construct()
     {
-        //TODO: check if user is already logged in
         $this->model = new RegisterModel();
     }
 
