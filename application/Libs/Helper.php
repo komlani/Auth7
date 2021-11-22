@@ -59,16 +59,14 @@ class Helper
             self::redirect('login');
     }
 
-    static public function canResetPassword($data)
+    static public function canResetPassword()
     {
-        // if (isset($data['selector']) && isset($data['token'])) {
-        //     if (!(new Model())->auth->canResetPassword($data['selector'], $data['token'])) {
-        //         var_dump('hi');exit;
-        //         self::redirect('login');
-        //     }
-        // } else {
-        //     var_dump('ho');exit;
-        //     self::redirect('login');
-        // }
+        if (
+            !(isset($_SESSION['token'])
+                &&
+                (new Model())->auth->canResetPassword($_SESSION['selector'], $_SESSION['token']))
+        ) {
+            self::redirect('login');
+        }
     }
 }

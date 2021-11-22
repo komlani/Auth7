@@ -12,6 +12,7 @@ class ForgotPasswordController
     public function __construct()
     {
         Helper::isLoggedIn();
+        
         $this->service = new ForgotPasswordService();
     }
 

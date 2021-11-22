@@ -2,12 +2,11 @@
 
 namespace Auth7\Controller;
 
-use Auth7\Model\RegisterModel;
-
 class HomeController
 {
     public function __construct()
-    {}
+    {
+    }
 
     public function index()
     {
@@ -16,4 +15,3 @@ class HomeController
         view('_templates/client/footer');
     }
 }
-

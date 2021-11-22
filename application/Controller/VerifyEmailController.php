@@ -12,7 +12,7 @@ class VerifyEmailController
     public function __construct()
     {
         Helper::isLoggedOut();
-        
+
         $this->service = new VerifyEmailService();
     }
 
@@ -26,5 +26,5 @@ class VerifyEmailController
     public function store()
     {
         $this->service->manageRequest($_POST);
-    }  
+    }
 }

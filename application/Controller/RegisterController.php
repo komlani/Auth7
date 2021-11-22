@@ -12,10 +12,10 @@ class RegisterController
     public function __construct()
     {
         Helper::isLoggedIn();
-         
+
         $this->service = new RegisterService();
     }
-    
+
     public function index()
     {
         view('_templates/auth/header');

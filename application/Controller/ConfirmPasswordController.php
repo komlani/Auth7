@@ -12,6 +12,7 @@ class ConfirmPasswordController
     public function __construct()
     {
         Helper::isLoggedOut();
+
         $this->service = new ConfirmPasswordService();
     }
 

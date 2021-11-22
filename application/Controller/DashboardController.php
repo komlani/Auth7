@@ -7,10 +7,10 @@ use Auth7\Libs\Helper;
 class DashboardController
 {
     public function __construct()
-    {  
-        Helper::isLoggedOut();  
+    {
+        Helper::isLoggedOut();
     }
-    
+
     public function index()
     {
         view('_templates/dashboard/header');

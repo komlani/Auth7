@@ -10,18 +10,17 @@ class ResetPasswordController
     private $service;
 
     public function __construct()
-    {     
-        Helper::isLoggedIn();   
-        // Helper::canResetPassword($_GET);
+    {
+        Helper::isLoggedIn();
+        Helper::canResetPassword();
+
         $this->service = new ResetPasswordService();
     }
-    
-    //TODO: middlware to prevent direct access reset pass access
+
     public function index()
     {
-
         view('_templates/auth/header');
-        view('auth/reset-password', );
+        view('auth/reset-password',);
         view('_templates/auth/footer');
     }
 
