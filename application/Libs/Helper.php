@@ -65,8 +65,7 @@ class Helper
             !(isset($_SESSION['token'])
                 &&
                 (new Model())->auth->canResetPassword($_SESSION['selector'], $_SESSION['token']))
-        ) {
-            self::redirect('login');
-        }
+        ) self::redirect('login');
+        
     }
 }

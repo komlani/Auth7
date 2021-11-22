@@ -2,9 +2,9 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
 use Rakit\Validation\Validator;
-use Auth7\Model\ConfirmPasswordModel;
 
 class ConfirmPasswordService
 {
@@ -12,7 +12,7 @@ class ConfirmPasswordService
 
     public function __construct()
     {
-        $this->model = new ConfirmPasswordModel();
+        $this->model = new Model();
     }
 
     public function manageRequest($data)

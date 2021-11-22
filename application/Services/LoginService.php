@@ -2,6 +2,7 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
 use Auth7\Model\RegisterModel;
 use Rakit\Validation\Validator;
@@ -12,7 +13,7 @@ class LoginService
 
     public function __construct()
     {
-        $this->model = new RegisterModel();
+        $this->model = new Model();
     }
 
     public function manageRequest($data)

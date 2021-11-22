@@ -2,9 +2,9 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
 use Rakit\Validation\Validator;
-use Auth7\Model\ResetPasswordModel;
 
 class ResetPasswordService
 {
@@ -12,7 +12,7 @@ class ResetPasswordService
 
     public function __construct()
     {
-        $this->model = new ResetPasswordModel();
+        $this->model = new Model();
     }
 
     public function manageRequest($data)
@@ -37,7 +37,9 @@ class ResetPasswordService
         } else {
             try {
                 $this->model->auth->resetPassword($data['selector'], $data['token'], $data['password']);
+              
                 $_SESSION['password_reseted'] = true;
+              
                 Helper::redirect('login');
             } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
                 die('Invalid token');

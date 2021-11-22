@@ -2,8 +2,8 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
-use Auth7\Model\RegisterModel;
 use Rakit\Validation\Validator;
 
 class RegisterService
@@ -13,7 +13,7 @@ class RegisterService
 
     public function __construct()
     {
-        $this->model = new RegisterModel();
+        $this->model = new Model();
         $this->email = new EmailService();
     }
 
@@ -67,7 +67,9 @@ class RegisterService
     {
         try {
             $this->model->auth->confirmEmail($data['selector'], $data['token']);
+          
             $_SESSION['email_verified'] = true;
+           
             Helper::redirect('register');
         } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) { //TODO: manage email confirmation errors messages
             die('Invalid token');

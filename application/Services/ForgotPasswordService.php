@@ -2,9 +2,9 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
 use Rakit\Validation\Validator;
-use Auth7\Model\ResetPasswordModel;
 
 class ForgotPasswordService
 {
@@ -13,7 +13,7 @@ class ForgotPasswordService
 
     public function __construct()
     {
-        $this->model = new ResetPasswordModel();
+        $this->model = new Model();
         $this->email = new EmailService();
     }
 
