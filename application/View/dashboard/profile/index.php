@@ -15,19 +15,19 @@
 
                             <div class="col-sm-12">
 
-                                <div class="left col-sm-7">
+                                <div class="left col-sm-8">
                                     <h2><?php echo $humanInfo->first_name . ' ' . strtoupper($humanInfo->last_name) ?></h2>
 
-                                    <p><strong>About: </strong> Web Designer / UI.lorem ipsium fezfe freifre cezif e </p>
+                                    <p><strong>About: </strong> Developer</p>
 
                                     <ul class="list-unstyled">
                                         <li><i class="fa fa-phone"></i> Phone #: </li>
-                                        <li><i class="fa fa-building"></i> Address: </li>
+                                        <li><i class="fa fa-history"></i> Last Update: <?php if($humanInfo->updated) echo date("Y-m-d H:i:s",$humanInfo->updated); ?> </li>
                                     </ul>
                                 </div>
 
-                                <div class="left col-sm-5 text-center">
-                                    <img src="<?php URL ?>img/img.jpg" alt="" class="img-circle img-fluid">
+                                <div class="left col-sm-4 text-center">
+                                    <img src="<?php if(isset($humanInfo->avatar)){echo URL.'img/avatars/'.$humanInfo->avatar;}else{echo URL.'img/img.jpg';}  ?>" alt="" class="img-circle img-fluid">
                                 </div>
 
                             </div>

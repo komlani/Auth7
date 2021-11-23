@@ -29,7 +29,11 @@ class ProfileController
 
     public function edit($id)
     {
-        var_dump($id);
+        view('_templates/dashboard/header');
+        view('_templates/dashboard/sidebar');
+        view('_templates/dashboard/top-navigation');
+        view('dashboard/profile/edit');
+        view('_templates/dashboard/footer');
     }
 
     public function update()

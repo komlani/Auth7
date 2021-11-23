@@ -13,7 +13,7 @@
                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?>">
 
                     <div>
-                        <input type="email" name="email" value="<?php echo $_SESSION['validated']['email'] ?? '' ?>" class="form-control <?php if (isset($_SESSION['errors']['password'])) {
+                        <input type="email" name="email" value="<?php echo 'bozer@mailinator.com'?? $_SESSION['validated']['email'] ?? '' ?>" class="form-control <?php if (isset($_SESSION['errors']['password'])) {
                                                                                                                                                 echo 'mb-0';
                                                                                                                                             } else {
                                                                                                                                                 echo 'mb-2';
