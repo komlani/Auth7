@@ -2,9 +2,8 @@
 
 namespace Auth7\Core;
 
-use PHPTokenGenerator\TokenGenerator;
-
-use function Auth7\Controller\redirect;
+use Auth7\Controller\HomeController;
+use Auth7\Controller\ErrorController;
 
 require APP . 'Core/CoreFunctions.php';
 
@@ -17,43 +16,54 @@ class Application
     public function __construct()
     {
         $this->splitUrl();
+
         if (!$this->url_controller) {
-
-            $page = new \Auth7\Controller\HomeController();
+           
+            $page = new HomeController();
             $page->index();
-
         } elseif (file_exists(APP . 'Controller/' . ucfirst($this->url_controller) . 'Controller.php')) {
-
+           
             $controller = "\\Auth7\\Controller\\" . ucfirst($this->url_controller) . 'Controller';
             $this->url_controller = new $controller();
 
-            if (method_exists($this->url_controller, $this->url_action) &&
-                is_callable(array($this->url_controller, $this->url_action))) {
-
+            if (
+                method_exists($this->url_controller, $this->url_action) &&
+                is_callable(array($this->url_controller, $this->url_action))
+            ) {
                 if (!empty($this->url_params)) {
-                    call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
-                } else {
-                    $this->url_controller->{$this->url_action}();
-                }
+                  
+                    try {
+                        call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
+                    } catch (\Throwable $th) {
+                        (new ErrorController())->index();
+                    }
 
+                } else {
+
+                    try {
+                        $this->url_controller->{$this->url_action}();
+                    } catch (\Throwable $th) {
+                        (new ErrorController())->index();
+                    }
+
+                }
             } else {
+
                 if (strlen($this->url_action) == 0) {
                     $this->url_controller->index();
                 } else {
-                    $page = new \Auth7\Controller\ErrorController();
-                    redirect('error');
+                    (new ErrorController())->index();
                 }
+
             }
         } else {
-            $page = new \Auth7\Controller\ErrorController();
-            redirect('error');
+            (new ErrorController())->index();
         }
     }
 
     private function splitUrl()
     {
         if (isset($_GET['url'])) {
-
             $url = trim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
@@ -64,11 +74,6 @@ class Application
             unset($url[0], $url[1]);
 
             $this->url_params = array_values($url);
-
-            // for debugging. uncomment this if you have problems with the URL
-            //echo 'Controller: ' . $this->url_controller . '<br>';
-            //echo 'Action: ' . $this->url_action . '<br>';
-            //echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
         }
     }
 }

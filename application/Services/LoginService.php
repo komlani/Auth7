@@ -4,7 +4,6 @@ namespace Auth7\Services;
 
 use Auth7\Core\Model;
 use Auth7\Libs\Helper;
-use Auth7\Model\RegisterModel;
 use Rakit\Validation\Validator;
 
 class LoginService
@@ -32,10 +31,10 @@ class LoginService
             Helper::redirect('login');
         } else {
 
-            //TODO: chack token
+            //TODO: check token
 
             try {
-
+                
                 if (isset($_POST['remember_me']))
                     $_POST['remember'] = $_POST['remember_me'];
 
@@ -44,6 +43,8 @@ class LoginService
                     : null;
 
                 $this->model->auth->login($_POST['email'], $_POST['password'], $rememberDuration);
+
+                $_SESSION['auth7_userId'] = $this->model->auth->getUserId();
 
                 //TODO: set user session variables
                 Helper::redirect('dashboard');
@@ -62,8 +63,8 @@ class LoginService
     public function logout()
     {
         try {
-            $this->model->auth->logOutEverywhere();
             $this->model->auth->destroySession();
+            $this->model->auth->logOut();
         } catch (\Delight\Auth\NotLoggedInException $e) {
         } finally {
             Helper::redirect('login');
