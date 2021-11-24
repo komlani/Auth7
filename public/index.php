@@ -19,13 +19,18 @@ require APP . 'Config/Config.php';
 use Auth7\Core\Application;
 use PHPTokenGenerator\TokenGenerator;
 
+session_start();
+
 /** define session token 
  * if not exist with 30 min lifetime **/
-session_set_cookie_params(900);
-session_start();
-if(!isset($_SESSION['auth7_token']))
-{
-    $_SESSION['auth7_token'] = (new TokenGenerator)->generate() ;
+if (!isset($_SESSION['auth7_token']) && !isset($_SESSION['auth7_token_time'])) {
+    $_SESSION['auth7_token'] = (new TokenGenerator)->generate();
+    $_SESSION['auth7_token_time'] = time() + (60 * 30);
+}
+
+if ($_SESSION['auth7_token_time'] <= time()) {
+    $_SESSION['auth7_token'] = (new TokenGenerator)->generate();
+    $_SESSION['auth7_token_time'] = time() + (60 * 30);
 }
 
 $app = new Application();

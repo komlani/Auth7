@@ -47,6 +47,7 @@ class Helper
         header('location: ' . URL . $path);
     }
 
+    /** Auth */
     static public function isLoggedIn()
     {
         if ((new Model())->auth->isLoggedIn())
@@ -66,6 +67,19 @@ class Helper
                 &&
                 (new Model())->auth->canResetPassword($_SESSION['selector'], $_SESSION['token']))
         ) self::redirect('login');
-        
     }
+    /** End Auth */
+
+    /** Token */
+    static public function checkToken()
+    {
+        if (!isset($_POST['_token']))
+            self::redirect('error');
+
+        if ($_POST['_token'] != $_SESSION['auth7_token']) {
+            var_dump('Token Error'); //TODO:define token error page
+            exit;
+        }
+    }
+    /** End Token */
 }

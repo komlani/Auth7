@@ -20,5 +20,6 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
-/** custom constants */
+/** custom 
+ * constants */
 define('APP_NAME', 'Auth7');
