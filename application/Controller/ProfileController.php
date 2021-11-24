@@ -22,7 +22,7 @@ class ProfileController
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
         view('dashboard/profile/index',[
-            'humanInfo' => $this->profileService->humanInfo(),
+            'profileData' => $this->profileService->profileData(),
         ]);
         view('_templates/dashboard/footer');
     }
@@ -32,12 +32,14 @@ class ProfileController
         view('_templates/dashboard/header');
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
-        view('dashboard/profile/edit');
+        view('dashboard/profile/edit', [
+            'profileData'=> $this->profileService->profileData($id),
+        ]);
         view('_templates/dashboard/footer');
     }
 
     public function update()
     {
-        var_dump($_POST);exit;
+        $this->profileService->manageRequest($_POST);
     }
 }

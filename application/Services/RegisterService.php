@@ -21,8 +21,8 @@ class RegisterService
     {
         $validation = (new Validator)->validate($data, [
             '_token' => 'required|alpha_num',
-            'first_name' => 'required|alpha_num',
-            'last_name' => 'required|alpha_num',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'password_confirm' => 'required|same:password',
