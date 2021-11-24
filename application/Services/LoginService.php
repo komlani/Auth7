@@ -31,7 +31,7 @@ class LoginService
             Helper::redirect('login');
         } else {
 
-            //TODO: check token
+            Helper::checkToken();
 
             try {
                 

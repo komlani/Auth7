@@ -35,7 +35,7 @@ class RegisterService
             Helper::redirect('register');
         } else {
 
-            //TODO:check token
+            Helper::checkToken();
 
             try {
                 $userId = $this->model->auth->register(

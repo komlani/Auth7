@@ -31,7 +31,7 @@ class ForgotPasswordService
             Helper::redirect('ForgotPassword');
         } else {
 
-            //TODO: verify token
+            Helper::checkToken();
 
             try {
                 $this->model->auth->forgotPassword($_POST['email'], function ($selector, $token) {
