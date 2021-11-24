@@ -18,7 +18,8 @@
         "delight-im/auth": "dev-master",
         "symfony/mailer": "5.4.x-dev",
         "rakit/validation": "dev-master",
-        "gsylvestre/php-token-generator": "dev-master"
+        "gsylvestre/php-token-generator": "dev-master",
+        "imagine/imagine": "^1.2"
     },
     "autoload":
     {
