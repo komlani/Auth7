@@ -2,6 +2,7 @@
 
 namespace Auth7\Services;
 
+use Auth7\Core\Model;
 use Auth7\Libs\Helper;
 use Auth7\Model\HumanModel;
 use Rakit\Validation\Validator;
@@ -24,6 +25,8 @@ class ProfileService
 
     public function manageRequest($data)
     {
+        //TODO: verify edit data availabilly
+
         /** Edit view forms have hidden 
          * inputs with names 'edit' with 
          * values hashed using password_hash(). 
@@ -50,7 +53,7 @@ class ProfileService
 
                 Helper::checkToken();
 
-                var_dump('validation passed');
+                var_dump('nada');
                 exit;
             }
         } elseif (password_verify('avatar', $data['edit'])) {
@@ -74,8 +77,7 @@ class ProfileService
 
                 Helper::checkToken();
 
-                var_dump('avatar validation passed');
-                exit;
+                
             }
         } elseif (password_verify('password', $data['edit'])) {
 

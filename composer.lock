@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c7f0dff7cc1e7ddac26af41c2343401",
+    "content-hash": "6ee0e945d7a62a0c2853c04d48d4bcd3",
     "packages": [
+        {
+            "name": "codeguy/upload",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brandonsavage/Upload.git",
+                "reference": "b32c8ae4e0e6e050696db9166a7dd57a186ef09a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brandonsavage/Upload/zipball/b32c8ae4e0e6e050696db9166a7dd57a186ef09a",
+                "reference": "b32c8ae4e0e6e050696db9166a7dd57a186ef09a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Upload\\": "src/Upload"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Lockhart",
+                    "email": "info@joshlockhart.com",
+                    "homepage": "https://github.com/codeguy/"
+                }
+            ],
+            "description": "Handle file uploads with extensible validation and storage strategies",
+            "homepage": "http://github.com/codeguy/Upload",
+            "keywords": [
+                "file",
+                "upload",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/brandonsavage/Upload/issues",
+                "source": "https://github.com/brandonsavage/Upload/tree/master"
+            },
+            "time": "2018-10-11T15:36:18+00:00"
+        },
         {
             "name": "delight-im/auth",
             "version": "dev-master",
@@ -186,6 +238,50 @@
                 "source": "https://github.com/delight-im/PHP-DB/tree/v1.3.1"
             },
             "time": "2020-02-21T10:46:03+00:00"
+        },
+        {
+            "name": "delight-im/file-upload",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delight-im/PHP-FileUpload.git",
+                "reference": "6c5924862b6692952db831c10face7ad2e935f1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delight-im/PHP-FileUpload/zipball/6c5924862b6692952db831c10face7ad2e935f1c",
+                "reference": "6c5924862b6692952db831c10face7ad2e935f1c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Delight\\FileUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple and convenient file uploads — secure by default",
+            "homepage": "https://github.com/delight-im/PHP-FileUpload",
+            "keywords": [
+                "file",
+                "files",
+                "form",
+                "input",
+                "upload",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/delight-im/PHP-FileUpload/issues",
+                "source": "https://github.com/delight-im/PHP-FileUpload/tree/master"
+            },
+            "time": "2020-08-09T14:48:07+00:00"
         },
         {
             "name": "delight-im/http",
@@ -1580,7 +1676,9 @@
         "delight-im/auth": 20,
         "symfony/mailer": 20,
         "rakit/validation": 20,
-        "gsylvestre/php-token-generator": 20
+        "gsylvestre/php-token-generator": 20,
+        "codeguy/upload": 20,
+        "delight-im/file-upload": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

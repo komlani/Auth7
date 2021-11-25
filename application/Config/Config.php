@@ -12,6 +12,8 @@ define('URL_PROTOCOL', '//');
 define('URL_DOMAIN', $_SERVER['HTTP_HOST']);
 define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SCRIPT_NAME'])));
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
+define('PUBLIC_PATH', $_SERVER['DOCUMENT_ROOT'].'/auth7/public/');
+
 
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');

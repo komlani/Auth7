@@ -19,7 +19,9 @@
         "symfony/mailer": "5.4.x-dev",
         "rakit/validation": "dev-master",
         "gsylvestre/php-token-generator": "dev-master",
-        "imagine/imagine": "^1.2"
+        "imagine/imagine": "^1.2",
+        "codeguy/upload": "dev-master",
+        "delight-im/file-upload": "dev-master"
     },
     "autoload":
     {
