@@ -63,5 +63,5 @@
 
     unset(
         $_SESSION["validation_error"],
-        $_SESSION['verfication_email_not_sent'],
+        $_SESSION['verification_email_not_sent'],
     );

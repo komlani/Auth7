@@ -46,11 +46,10 @@ class RegisterService
                     function ($selector, $token) {
                         $this->email->sendVerificationEmail($selector, $token, $_POST['email']);
                     }
+                    
+                    //TODO: insert human other informations
                 );
 
-                //TODO: insert human other informations
-
-                echo 'We have signed up a new user with the ID ' . $userId;
             } catch (\Delight\Auth\InvalidEmailException $e) { //TODO:magage register error messages
                 die('Invalid email address');
             } catch (\Delight\Auth\InvalidPasswordException $e) {

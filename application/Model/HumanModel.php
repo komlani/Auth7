@@ -42,12 +42,35 @@ class HumanModel extends Model
     {
         $sql = "UPDATE 
                     humans
-                SET avatar = :avatar
+                SET avatar = :avatar, 
+                    updated = :updated
                 WHERE user_id = :userId";
 
         $query = $this->db->prepare($sql);
-        $parameters = array(':avatar' => $data['filenameWithExtension'], ':userId' => $data['userId']);
+        $parameters = [
+            ':avatar' => $data['filenameWithExtension'],
+            ':userId' => $data['userId'],
+            ':updated' => time(),
+        ];
 
         return ($query->execute($parameters) ? true : false);
+    }
+
+    public function updated($id)
+    {
+        $sql = "UPDATE 
+                    humans
+                SET updated = :updated
+                WHERE user_id = :userId";
+
+        $query = $this->db->prepare($sql);
+        $parameters = [
+            ':updated' => time(),
+            ':userId' => $id,
+        ];
+
+        $query->execute($parameters);
+
+        return $this;
     }
 }

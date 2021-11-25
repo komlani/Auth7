@@ -4,19 +4,22 @@ namespace Auth7\Services;
 
 use Auth7\Libs\Helper;
 use Imagine\Image\Box;
-use Auth7\Model\HumanModel;
 use Imagine\Gd\Imagine;
+use Auth7\Model\HumanModel;
 use Rakit\Validation\Validator;
+use Auth7\Services\EmailService;
 use Auth7\Services\AvatarService;
 use Imagine\Image\ImageInterface;
 
 class ProfileService
 {
+    public $email;
     public $model;
     public $avatarService;
 
     public function __construct()
     {
+        $this->email = new EmailService();;
         $this->model = new HumanModel();
         $this->avatarService = new AvatarService();;
     }
@@ -34,6 +37,9 @@ class ProfileService
        
         if (!isset($data['edit']))
             Helper::redirect('error');
+
+        //TODO: check permission + isMe
+
 
         /** Edit view forms have hidden 
          * inputs with names 'edit' with 
@@ -65,8 +71,6 @@ class ProfileService
                 exit;
             }
         } elseif (password_verify('avatar', $data['edit'])) {
-
-            //TODO: check permission + isMe
 
             /** superglobal $_FILES is
              * implicitly passed to namageRequest() */
@@ -111,9 +115,9 @@ class ProfileService
                 'user_id' => 'required|numeric',
                 'human_id' => 'required|numeric',
                 'edit' => 'required',
-                'old_password' => 'required|min:8',
-                'new_password' => 'required|min:8|different:old_password',
-                'new_password_confirm' => 'required|same:new_password',
+                'oldPassword' => 'required|min:8',
+                'newPassword' => 'required|min:8|different:oldPassword',
+                'new_password_confirm' => 'required|same:newPassword',
             ]);
 
             if ($validation->fails()) {
@@ -125,8 +129,24 @@ class ProfileService
 
                 Helper::checkToken();
 
-                var_dump('password validation passed');
-                exit;
+                try {
+
+                    $this->model->auth->changePassword($_POST['oldPassword'], $_POST['newPassword']);
+
+                    $this->email->sendPasswordResetEmail($this->model->auth->getEmail());
+                   
+                    $_SESSION['password_updated'] = true;
+                    Helper::redirect('profile/edit/'.$data['user_id']);
+                }
+                catch (\Delight\Auth\NotLoggedInException $e) { //TODO: define pass reset error messages views
+                    die('Not logged in');
+                }
+                catch (\Delight\Auth\InvalidPasswordException $e) {
+                    die('Invalid password(s)');
+                }
+                catch (\Delight\Auth\TooManyRequestsException $e) {
+                    die('Too many requests');
+                }
             }
         } elseif (password_verify('email', $data['edit'])) {
 

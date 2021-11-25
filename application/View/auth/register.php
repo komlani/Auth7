@@ -67,7 +67,7 @@
 
                     <div class="separator">
 
-                        <?php if (isset($_SESSION['verfication_email_not_sent'])) { ?>
+                        <?php if (isset($_SESSION['verification_email_not_sent'])) { ?>
 
                             <div class="row">
                                 <div class="col-md-12 p-2">
@@ -77,7 +77,7 @@
 
                         <?php  } ?>
 
-                        <?php if (isset($_SESSION['verfication_email_sent'])) { ?>
+                        <?php if (isset($_SESSION['verification_email_sent'])) { ?>
 
                             <div class="row">
                                 <div class="col-md-12 p-2">
@@ -124,7 +124,7 @@
     unset(
         $_SESSION['validated'],
         $_SESSION['errors'],
-        $_SESSION['verfication_email_not_sent'],
-        $_SESSION['verfication_email_sent'],
+        $_SESSION['verification_email_not_sent'],
+        $_SESSION['verification_email_sent'],
         $_SESSION['email_verified'],
     );
