@@ -2,40 +2,64 @@
 
 namespace Auth7\Services;
 
+use Imagine\Image\Box;
+use Imagine\Gd\Imagine;
+use Auth7\Model\HumanModel;
+use Imagine\Image\ImageInterface;
 use Delight\FileUpload\FileUpload;
 use Delight\FileUpload\Throwable\UploadCancelledException;
 
 class AvatarService
 {
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new HumanModel();
+    }
+
     public function upload($userId)
     {
         try {
 
             $uploadedFile = (new FileUpload())
-                ->withTargetDirectory(PUBLIC_PATH . $userId . '/avatars')
+                ->withTargetDirectory(PUBLIC_PATH . 'img/avatars/' . $userId)
                 ->from('avatar')
                 ->save();
 
             return [
-                $uploadedFile->getFilenameWithExtension(),
-                $uploadedFile->getFilename(),
-                $uploadedFile->getExtension(),
-                $uploadedFile->getDirectory(),
-                $uploadedFile->getPath(),
-                $uploadedFile->getCanonicalPath()
+                'userId' => $userId,
+                'filenameWithExtension' => $uploadedFile->getFilenameWithExtension(),
             ];
         } catch (UploadCancelledException $e) {
-            var_dump('Error uploading file'); exit; //TODO: define uploed failed error page
+            var_dump('Error uploading file');
+            exit; //TODO: define uploed failed error page
         }
     }
 
-    public function resize()
+    public function resize($array)
     {
-        # code...
+        try {
+
+            $imagine = new Imagine();
+            $size    = new Box(128, 128);
+
+            $mode    = ImageInterface::THUMBNAIL_OUTBOUND;
+
+            $imagePath = PUBLIC_PATH . 'img/avatars/' . $array['userId'] . '/' . $array['filenameWithExtension'];
+            $imagine->open($imagePath)
+                ->thumbnail($size, $mode)
+                ->save($imagePath);
+
+            return $array;
+        } catch (\Throwable $th) {
+            var_dump('Error resizing');
+            exit; ///TODO: define resizing eror message
+        }
     }
 
-    public function save()
+    public function update($array)
     {
-        # code...
+        return $this->model->updateAvatar($array);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Auth7\Services;
 
-use Auth7\Core\Model;
 use Auth7\Libs\Helper;
+use Imagine\Image\Box;
 use Auth7\Model\HumanModel;
+use Imagine\Gd\Imagine;
 use Rakit\Validation\Validator;
 use Auth7\Services\AvatarService;
-use Delight\FileUpload\FileUpload;
-use Delight\FileUpload\Throwable\UploadCancelledException;
+use Imagine\Image\ImageInterface;
 
 class ProfileService
 {
@@ -30,10 +30,9 @@ class ProfileService
 
     public function manageRequest($data)
     {
-        // TODO: helper verify if auth user is who whant te perform action
-        //TODO: verify edit data availabilly
-
-        if(!isset($data['edit']))
+        // TODO: helper verify if auth user is who whant to perform action
+       
+        if (!isset($data['edit']))
             Helper::redirect('error');
 
         /** Edit view forms have hidden 
@@ -88,21 +87,21 @@ class ProfileService
 
                 Helper::checkToken();
 
-                // service upload
-            //    $t =  $this->avatarService->upload($data['user_id']);
-            //    var_dump($t); exit;
-            
-                // serive resize
-                // service save in db
+                if (
+                    $this->avatarService->update(
 
-                $upload = new FileUpload();
-                $upload->withTargetDirectory(PUBLIC_PATH . $data['user_id'] . '/avatars');
-                $upload->from('avatar');
+                        $this->avatarService->resize(
 
-                try {
-                    $uploadedFile = $upload->save();
-                } catch (UploadCancelledException $e) {
-                    // upload cancelled
+                            $this->avatarService->upload($data['user_id'])
+                        )
+                    )
+                ) {
+                    $_SESSION['avatar_updated'] = true;
+
+                    Helper::redirect('profile/edit/' . $data['user_id']);
+                } else {
+                    var_dump('saving img error');
+                    exit; //TODO: define saving img error
                 }
             }
         } elseif (password_verify('password', $data['edit'])) {
@@ -153,8 +152,8 @@ class ProfileService
                 var_dump('email validation passed');
                 exit;
             }
-        }else{
-            Helper::redirect('profile/edit/'. $data['user_id']);
+        } else {
+            Helper::redirect('profile/edit/' . $data['user_id']);
         }
     }
 }

@@ -30,8 +30,10 @@
 
                             <div class="x_content">
 
+                               
+
                                 <form action="<?php echo URL  ?>profile/update" method="POST">
-                                   
+
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
                                     <input type="hidden" name="user_id" value="<?php echo $profileData->id ?? '' ?>">
                                     <input type="hidden" name="human_id" value="<?php echo $profileData->human_id ?? '' ?>">
@@ -76,13 +78,17 @@
                 <!-- Avatar -->
                 <div class="row">
 
-                    <div class="col-md-12">
-                        <div class="alert alert-success alert-dismissible " role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+                    <?php if (isset($_SESSION['avatar_updated'])) { ?>
+
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissible " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                </button>
+                                <strong>Awesome! Picture Updated !</strong>
+                            </div>
                         </div>
-                    </div>
+
+                    <?php } ?>
 
                     <div class="col-md-12">
 
@@ -96,14 +102,13 @@
                             <div class="x_content">
 
                                 <form action="<?php echo URL  ?>profile/update" method="POST" enctype="multipart/form-data">
-                                  
+
                                     <div class="row">
                                         <div class="col-md-4 offset-md-4 profile_details">
                                             <div class="profile_view">
                                                 <div class="col-md-12">
-                                                    <img src="<?php echo URL ?>img/img.jpg" alt="" class="img-circle img-fluid">
+                                                    <img src="<?php echo URL.'img/avatars/'.$profileData->id.'/'.$profileData->avatar ?? URL.'img/user.png' ?>" alt="<?php echo $profileData->avatar ?? 'img' ?>" class="img-circle img-fluid">
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +268,7 @@
                 </div>
 
             </div>
-            
+
         <?php } ?>
 
     </div>
@@ -277,4 +282,5 @@ unset(
     $_SESSION['errors'],
     $_SESSION['password_not_found'],
     $_SESSION['email_not_found'],
+    $_SESSION['avatar_updated'],
 );

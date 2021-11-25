@@ -37,4 +37,17 @@ class HumanModel extends Model
 
         return ($query->rowcount() ? $query->fetch() : false);
     }
+
+    public function updateAvatar($data)
+    {
+        $sql = "UPDATE 
+                    humans
+                SET avatar = :avatar
+                WHERE user_id = :userId";
+
+        $query = $this->db->prepare($sql);
+        $parameters = array(':avatar' => $data['filenameWithExtension'], ':userId' => $data['userId']);
+
+        return ($query->execute($parameters) ? true : false);
+    }
 }

@@ -26,11 +26,7 @@
                                 </div>
 
                                 <div class="left col-sm-4 text-center">
-                                    <img src="<?php if (isset($profileData->avatar)) {
-                                                    echo URL . 'img/avatars/' . $profileData->avatar;
-                                                } else {
-                                                    echo URL . 'img/img.jpg';
-                                                }  ?>" alt="<?php echo $profileData->avatar ?? 'img' ?>" class="img-circle img-fluid">
+                                    <img src="<?php echo URL.'img/avatars/'.$profileData->id.'/'.$profileData->avatar ?? URL.'img/user.png' ?>" alt="<?php echo $profileData->avatar ?? 'img' ?>" class="img-circle img-fluid">
                                 </div>
 
                             </div>
