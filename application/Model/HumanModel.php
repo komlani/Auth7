@@ -24,6 +24,7 @@ class HumanModel extends Model
                     humans.avatar,
                     humans.first_name, 
                     humans.last_name, 
+                    humans.phone, 
                     humans.updated
                 FROM users 
                 INNER JOIN humans
@@ -54,6 +55,30 @@ class HumanModel extends Model
         ];
 
         return ($query->execute($parameters) ? true : false);
+    }
+
+    public function updateGeneralInfo($data)
+    {
+        $sql = "UPDATE 
+                    humans
+                SET first_name  = :first_name,
+                    last_name  = :last_name,
+                    phone = :phone,
+                    updated = :updated
+                WHERE user_id = :userId";
+
+        $query = $this->db->prepare($sql);
+        $parameters = [
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':phone' => $data['phone'],
+            ':updated' => time(),
+            ':userId' => $data['user_id'],
+        ];
+
+        $query->execute($parameters);
+
+        return $this;
     }
 
     public function updated($id)

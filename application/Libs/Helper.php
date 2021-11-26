@@ -68,6 +68,13 @@ class Helper
                 (new Model())->auth->canResetPassword($_SESSION['selector'], $_SESSION['token']))
         ) self::redirect('login');
     }
+
+    static public function isMe($id)
+    {
+        if ($id != $_SESSION['auth7_userId'])
+            self::redirect('error');
+        
+    }
     /** End Auth */
 
     /** Token */
