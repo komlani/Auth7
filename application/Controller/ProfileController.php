@@ -29,6 +29,8 @@ class ProfileController
 
     public function edit($id)
     {
+        Helper::isMe($id);
+        
         view('_templates/dashboard/header');
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');

@@ -44,36 +44,6 @@ class EmailService
         }
     }
 
-    public function sendEmailChangeNotification(
-        $selector,
-        $token,
-        $newEmail
-    ) {
-        try {
-
-            $email = (new Email())
-                ->from('hello@example.com')
-                ->to($newEmail)
-                ->subject('Change Email')
-                ->html("<p>verify your new email</p><a href=" . URL .
-                    'changeEmail?verified=1&selector=' . \urlencode($selector) .
-                    '&token=' . \urlencode($token) . ">Click here</a>");
-
-            $this->mailer->send($email);
-
-            /** set human.updated
-             *value to now */
-            $this->model->updated($this->model->auth->getUserId());
-
-
-            $_SESSION['verification_email_sent'] = true;
-            Helper::redirect('changeEmail');
-        } catch (\Throwable $th) {
-            $_SESSION['verification_email_not_sent'] = true;
-            Helper::redirect('changeEmail');
-        }
-    }
-
     public function sendForgotPasswordEmail(
         $selector,
         $token,
@@ -108,8 +78,38 @@ class EmailService
                 ->html("Your password have been reseted - Date : " . date("Y-m-d H:i:s", time())); //TODO:format date to AM
 
             $this->mailer->send($email);
+            $this->model->updated($this->model->auth->getUserId());
         } catch (\Throwable $th) {
-            Helper::redirect('error'); // Define email failure error page
+            var_dump('pass reset email not send');exit; //TODO: Define email failure error page
+        }
+    }
+
+    public function sendEmailChangeNotification(
+        $selector,
+        $token,
+        $newEmail
+    ) {
+        try {
+
+            $email = (new Email())
+                ->from('hello@example.com')
+                ->to($newEmail)
+                ->subject('Change Email')
+                ->html("<p>verify your new email</p><a href=" . URL .
+                    'changeEmail?verified=1&selector=' . \urlencode($selector) .
+                    '&token=' . \urlencode($token) . ">Click here</a>");
+
+            $this->mailer->send($email);
+
+            /** set human.updated
+             *value to now */
+            $this->model->updated($this->model->auth->getUserId());
+
+            $_SESSION['verification_email_sent'] = true;
+            Helper::redirect('changeEmail');
+        } catch (\Throwable $th) {
+            $_SESSION['verification_email_not_sent'] = true;
+            Helper::redirect('changeEmail');
         }
     }
 }

@@ -15,13 +15,13 @@
                             <div class="col-sm-12">
 
                                 <div class="left col-sm-8">
-                                    <h2><?php echo $profileData->first_name . ' ' . strtoupper($profileData->last_name) ?></h2>
+                                    <h2><?php echo $profileData->first_name ?? '' . ' ' . strtoupper($profileData->last_name) ?? '' ?></h2>
 
                                     <p><strong>About: </strong> Developer</p>
 
                                     <ul class="list-unstyled">
-                                        <li><i class="fa fa-phone"></i> Phone: </li>
-                                        <li><i class="fa fa-envelope"></i> Email: <?php echo  $profileData->email ?? ""?> </li>
+                                        <li><i class="fa fa-phone"></i> Phone: <?php echo $profileData->phone ?? "" ?> </li>
+                                        <li><i class="fa fa-envelope"></i> Email: <?php echo  $profileData->email ?? "" ?> </li>
                                         <li><i class="fa fa-history"></i> Last Update: <?php if ($profileData->updated) echo date("Y-m-d H:i:s", $profileData->updated); ?> </li>
                                     </ul>
                                 </div>
@@ -33,21 +33,25 @@
                             </div>
 
                             <div class=" bottom text-center">
+
                                 <div class=" col-sm-6 text-left">
                                     <a href="<?php echo URL ?>changeEmail" class="btn btn-primary btn-sm">
                                         <i class="fa fa-pencil"> </i> Change Email
                                     </a>
                                 </div>
+
                                 <div class="col-sm-6 text-right">
                                     <a href="<?php echo URL ?>profile/edit/<?php echo $profileData->id ?? '' ?>" class="btn btn-primary btn-sm">
                                         <i class="fa fa-pencil"> </i> Edit Profile
                                     </a>
                                 </div>
+
                             </div>
 
                         </div>
 
                     </div>
+
                 <?php } ?>
 
             </div>
