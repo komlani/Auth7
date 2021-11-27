@@ -73,16 +73,12 @@ class Helper
     {
         if ($id != $_SESSION['auth7_userId'])
             self::redirect('error');
-        
     }
     /** End Auth */
 
     /** Token */
     static public function checkToken()
     {
-        if (!isset($_POST['_token']))
-            self::redirect('error');
-
         if ($_POST['_token'] != $_SESSION['auth7_token']) {
             var_dump('Token Error'); //TODO:define token error page
             exit;

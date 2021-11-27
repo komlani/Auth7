@@ -29,4 +29,9 @@ class ChangeEmailController
     {
         $this->service->manageRequest($_POST);
     }
+
+    public function verifyEmail()
+    {
+        $this->service->verifyEmail($_GET);
+    }
 }

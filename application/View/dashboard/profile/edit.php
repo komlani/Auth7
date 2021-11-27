@@ -37,7 +37,6 @@
                                 <form action="<?php echo URL  ?>profile/update" method="POST">
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $profileData->id ?? '' ?>">
                                     <input type="hidden" name="edit" value="<?php echo password_hash('general_info', PASSWORD_DEFAULT) ?>">
 
                                     <div class="form-group">
@@ -127,7 +126,6 @@
                                     </div>
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $profileData->id ?? '' ?>">
                                     <input type="hidden" name="edit" value="<?php echo password_hash('avatar', PASSWORD_DEFAULT) ?>">
 
 
@@ -180,22 +178,21 @@
                                 <form action="<?php echo URL  ?>profile/update" method="POST">
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="user_id" value="<?php echo $profileData->id ?? '' ?>">
                                     <input type="hidden" name="edit" value="<?php echo password_hash('password', PASSWORD_DEFAULT) ?>">
 
                                     <div class="form-group">
-                                        <label for="oldPassword">Old Password</label>
-                                        <input type="password" name="oldPassword" id="oldPassword" class="form-control">
-                                        <span class="text-danger"><?php echo  $_SESSION['errors']['oldPassword'] ?? '' ?></span>
+                                        <label for="old_password">Old Password</label>
+                                        <input type="password" name="old_password" id="old_password" class="form-control">
+                                        <span class="text-danger"><?php echo  $_SESSION['errors']['old_password'] ?? '' ?></span>
                                         <span class="text-danger"><?php echo  $_SESSION['password_not_found'] ?? '' ?></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="newPassword">New Password</label>
-                                        <input type="password" name="newPassword" value="<?php if (isset($_SESSION['errors']['newPassword'])) {
-                                                                                                echo $_SESSION['validated']['newPassword'];
-                                                                                            } ?>" id="newPassword" class="form-control">
-                                        <span class="text-danger"><?php echo  $_SESSION['errors']['newPassword'] ?? '' ?></span>
+                                        <label for="new_password">New Password</label>
+                                        <input type="password" name="new_password" value="<?php if (isset($_SESSION['errors']['new_password'])) {
+                                                                                                echo $_SESSION['validated']['new_password'];
+                                                                                            } ?>" id="new_password" class="form-control">
+                                        <span class="text-danger"><?php echo  $_SESSION['errors']['new_password'] ?? '' ?></span>
                                     </div>
 
                                     <div class="form-group">

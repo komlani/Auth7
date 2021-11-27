@@ -34,7 +34,7 @@ class LoginService
             Helper::checkToken();
 
             try {
-                
+
                 if (isset($_POST['remember_me']))
                     $_POST['remember'] = $_POST['remember_me'];
 

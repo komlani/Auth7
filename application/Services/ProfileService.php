@@ -16,9 +16,9 @@ class ProfileService
 
     public function __construct()
     {
-        $this->email = new EmailService();;
         $this->model = new HumanModel();
-        $this->avatarService = new AvatarService();;
+        $this->email = new EmailService();
+        $this->avatarService = new AvatarService();
     }
 
     public function profileData($id = null)
@@ -40,7 +40,6 @@ class ProfileService
 
             $validation = (new Validator)->validate($data, [
                 '_token' => 'required|alpha_num',
-                'user_id' => 'required|numeric',
                 'edit' => 'required',
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -51,7 +50,7 @@ class ProfileService
                 $_SESSION['validated'] = $validation->getValidatedData();
                 $_SESSION['errors'] = $validation->errors->firstOfAll();
 
-                Helper::redirect('profile/edit/' . $data['user_id']);
+                Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
             } else {
 
                 $this->_protectRequest();
@@ -60,7 +59,7 @@ class ProfileService
 
                 $_SESSION['general_info_updated'] = true;
 
-                Helper::redirect('profile/edit/' . $data['user_id']);
+                Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
             }
         } elseif (password_verify('avatar', $data['edit'])) {
 
@@ -68,7 +67,6 @@ class ProfileService
              * implicitly passed to namageRequest() */
             $validation = (new Validator)->validate($data + $_FILES, [
                 '_token' => 'required|alpha_num',
-                'user_id' => 'required|numeric',
                 'edit' => 'required',
                 'avatar' => 'required|uploaded_file:0,3M,png,jpeg',
             ]);
@@ -77,7 +75,7 @@ class ProfileService
                 $_SESSION['validated'] = $validation->getValidatedData();
                 $_SESSION['errors'] = $validation->errors->firstOfAll();
 
-                Helper::redirect('profile/edit/' . $data['user_id']);
+                Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
             } else {
 
                 $this->_protectRequest();
@@ -87,13 +85,13 @@ class ProfileService
 
                         $this->avatarService->resize(
 
-                            $this->avatarService->upload($data['user_id'])
+                            $this->avatarService->upload($_SESSION['auth7_userId'])
                         )
                     )
                 ) {
                     $_SESSION['avatar_updated'] = true;
 
-                    Helper::redirect('profile/edit/' . $data['user_id']);
+                    Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
                 } else {
                     var_dump('saving img error');
                     exit; //TODO: define saving img error
@@ -103,21 +101,23 @@ class ProfileService
 
             $validation = (new Validator)->validate($data, [
                 '_token' => 'required|alpha_num',
-                'user_id' => 'required|numeric',
                 'edit' => 'required',
-                'oldPassword' => 'required|min:8',
-                'newPassword' => 'required|min:8|different:oldPassword',
-                'new_password_confirm' => 'required|same:newPassword',
+                'old_password' => 'required|min:8',
+                'new_password' => 'required|min:8|different:old_password',
+                'new_password_confirm' => 'required|same:new_password',
             ]);
 
             if ($validation->fails()) {
                 $_SESSION['validated'] = $validation->getValidatedData();
                 $_SESSION['errors'] = $validation->errors->firstOfAll();
 
-                Helper::redirect('profile/edit/' . $data['user_id']);
+                Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
             } else {
 
                 $this->_protectRequest();
+
+                $_POST['oldPassword'] = $_POST["old_password"];
+                $_POST['newPassword'] = $_POST["new_password"];
 
                 try {
 
@@ -125,8 +125,8 @@ class ProfileService
                     $this->email->sendPasswordResetEmail($this->model->auth->getEmail());
 
                     $_SESSION['password_updated'] = true;
-                    
-                    Helper::redirect('profile/edit/' . $data['user_id']);
+
+                    Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
                 } catch (\Delight\Auth\NotLoggedInException $e) { //TODO: define pass reset error messages views
                     die('Not logged in');
                 } catch (\Delight\Auth\InvalidPasswordException $e) {
@@ -136,13 +136,13 @@ class ProfileService
                 }
             }
         } else {
-            Helper::redirect('profile/edit/' . $data['user_id']);
+            Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
         }
     }
 
     private function _protectRequest()
     {
-        Helper::isMe($_POST['user_id']);
+        Helper::isMe($_SESSION['auth7_userId']);
         Helper::checkToken();
     }
 }

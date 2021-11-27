@@ -96,20 +96,18 @@ class EmailService
                 ->to($newEmail)
                 ->subject('Change Email')
                 ->html("<p>verify your new email</p><a href=" . URL .
-                    'changeEmail?verified=1&selector=' . \urlencode($selector) .
+                    'changeEmail/verifyEmail?selector=' . \urlencode($selector) .
                     '&token=' . \urlencode($token) . ">Click here</a>");
 
             $this->mailer->send($email);
-
+            
             /** set human.updated
              *value to now */
             $this->model->updated($this->model->auth->getUserId());
-
+            
             $_SESSION['verification_email_sent'] = true;
-            Helper::redirect('changeEmail');
         } catch (\Throwable $th) {
             $_SESSION['verification_email_not_sent'] = true;
-            Helper::redirect('changeEmail');
         }
     }
 }

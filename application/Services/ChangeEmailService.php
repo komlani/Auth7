@@ -19,14 +19,14 @@ class ChangeEmailService
 
     public function manageRequest($data)
     {
-        Helper::checkToken();
-
         $validation = (new Validator)->validate($data, [
             '_token' => 'required|alpha_num',
             'newEmail' => 'required|email',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|min:8|same:password',
         ]);
+
+        Helper::checkToken();
 
         if ($validation->fails()) {
             $_SESSION['validated'] = $validation->getValidatedData();
@@ -43,7 +43,7 @@ class ChangeEmailService
                         $this->email->sendEmailChangeNotification($selector, $token, $_POST['newEmail']);
                     });
                 } else {
-                    Helper::redirect('changeEmail'); //TODO: define action denied error page
+                    $_SESSION["wrong_password"] = true;
                 }
             } catch (\Delight\Auth\UserAlreadyExistsException $e) {
                 $_SESSION['email_already_exists'] = true;
@@ -52,6 +52,25 @@ class ChangeEmailService
             } finally {
                 Helper::redirect('changeEmail');
             }
+        }
+    }
+
+    public function verifyEmail($data)
+    {
+        try {
+            $this->model->auth->confirmEmail($data['selector'], $data['token']);
+
+            $_SESSION['verified'] = true;
+        } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) { //TODO: manage email confirmation errors messages
+            die('Invalid token');
+        } catch (\Delight\Auth\TokenExpiredException $e) {
+            die('Token expired');
+        } catch (\Delight\Auth\UserAlreadyExistsException $e) {
+            die('Email address already exists');
+        } catch (\Delight\Auth\TooManyRequestsException $e) {
+            die('Too many requests');
+        }finally{
+            Helper::redirect('changeEmail');
         }
     }
 }

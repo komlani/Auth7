@@ -73,7 +73,7 @@ class HumanModel extends Model
             ':last_name' => $data['last_name'],
             ':phone' => $data['phone'],
             ':updated' => time(),
-            ':userId' => $data['user_id'],
+            ':userId' => $_SESSION['auth7_userId'],
         ];
 
         $query->execute($parameters);

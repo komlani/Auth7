@@ -15,7 +15,7 @@
                             <div class="col-sm-12">
 
                                 <div class="left col-sm-8">
-                                    <h2><?php echo $profileData->first_name ?? '' . ' ' . strtoupper($profileData->last_name) ?? '' ?></h2>
+                                    <h2><?php echo $profileData->first_name . ' ' . strtoupper($profileData->last_name) ?></h2>
 
                                     <p><strong>About: </strong> Developer</p>
 

@@ -34,7 +34,7 @@
 
             <?php } ?>
 
-            <?php if (isset($_GET['verified'])) { ?>
+            <?php if (isset($_SESSION['verified'])) { ?>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -72,10 +72,11 @@
                                     <span class="text-danger"><?php if (isset($_SESSION['email_already_exists'])) echo  "Sorry, email already taken" ?></span>
                                     <span class="text-danger"><?php if (isset($_SESSION['too_many_request'])) echo "Too many requests!  Retry later." ?></span>
                                 </div>
-
+                                
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" name="password" id="password" class="form-control">
+                                    <span class="text-danger"><?php if (isset($_SESSION['wrong_password'])) echo  "Wrong password !" ?></span>
                                     <span class="text-danger"><?php echo  $_SESSION['errors']['password'] ?? '' ?></span>
                                 </div>
 
@@ -113,5 +114,6 @@ unset(
     $_SESSION['too_many_request'],
     $_SESSION['verification_email_sent'],
     $_SESSION['verification_email_not_sent'],
-    $_GET['verified'],
+    $_SESSION['verified'],
+    $_SESSION["wrong_password"],
 );
