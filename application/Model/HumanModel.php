@@ -81,6 +81,35 @@ class HumanModel extends Model
         return $this;
     }
 
+    public function saveNames($data)
+    {
+        $sql = "INSERT 
+                INTO humans (
+                    user_id, 
+                    first_name, 
+                    last_name, 
+                    updated
+                ) 
+                VALUES (
+                    :user_id, 
+                    :first_name, 
+                    :last_name, 
+                    :updated
+                )";
+
+        $query = $this->db->prepare($sql);
+        $parameters =  [
+            ':user_id' => $data['user_id'],
+            ':first_name' => $data['first_name'],
+            ':last_name' => $data['last_name'],
+            ':updated' => $data['updated'],
+        ];
+
+        $query->execute($parameters);
+
+        return $this;
+    }
+
     public function updated($id)
     {
         $sql = "UPDATE 

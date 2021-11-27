@@ -17,7 +17,8 @@
                                 <div class="left col-sm-8">
                                     <h2><?php echo $profileData->first_name . ' ' . strtoupper($profileData->last_name) ?></h2>
 
-                                    <p><strong>About: </strong> Developer</p>
+                                    <!-- <p><strong>About: </strong></p> -->
+                                    <br>
 
                                     <ul class="list-unstyled">
                                         <li><i class="fa fa-phone"></i> Phone: <?php echo $profileData->phone ?? "" ?> </li>
@@ -27,7 +28,11 @@
                                 </div>
 
                                 <div class="left col-sm-4 text-center">
-                                    <img src="<?php echo URL . 'img/avatars/' . $profileData->id . '/' . $profileData->avatar ?? URL . 'img/user.png' ?>" alt="<?php echo $profileData->avatar ?? 'img' ?>" class="img-circle img-fluid">
+                                    <img src="<?php if (isset($profileData->avatar)) {
+                                                    echo URL . 'img/avatars/' . $profileData->id . '/' . $profileData->avatar;
+                                                } else {
+                                                    echo URL . 'img/user.png';
+                                                } ?>" alt="<?php echo $profileData->avatar ?? 'img' ?>" class="img-circle img-fluid">
                                 </div>
 
                             </div>

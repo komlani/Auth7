@@ -43,7 +43,7 @@ class ProfileService
                 'edit' => 'required',
                 'first_name' => 'required',
                 'last_name' => 'required',
-                'phone' => 'required|max:20',
+                'phone' => 'max:20',
             ]);
 
             if ($validation->fails()) {

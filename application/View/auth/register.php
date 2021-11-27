@@ -81,7 +81,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 p-2">
-                                    <span class="text-info">You have been registered.Check your mail to acticate your account</span>
+                                    <span class="text-info">You have been registered.Check your mail to activate your account</span>
                                 </div>
                             </div>
 

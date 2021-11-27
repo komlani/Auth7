@@ -35,12 +35,9 @@ class EmailService
                     '&token=' . \urlencode($token) . ">Click here</a>");
 
             $this->mailer->send($email);
-
             $_SESSION['verification_email_sent'] = true;
-            Helper::redirect('register');
         } catch (\Throwable $th) {
             $_SESSION['verification_email_not_sent'] = true;
-            Helper::redirect('register');
         }
     }
 

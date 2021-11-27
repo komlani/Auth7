@@ -2,8 +2,8 @@
 
 namespace Auth7\Services;
 
-use Auth7\Core\Model;
 use Auth7\Libs\Helper;
+use Auth7\Model\HumanModel;
 use Rakit\Validation\Validator;
 
 class RegisterService
@@ -13,7 +13,7 @@ class RegisterService
 
     public function __construct()
     {
-        $this->model = new Model();
+        $this->model = new HumanModel();
         $this->email = new EmailService();
     }
 
@@ -42,13 +42,17 @@ class RegisterService
                     $_POST['email'],
                     $_POST['password'],
                     null,
-
                     function ($selector, $token) {
                         $this->email->sendVerificationEmail($selector, $token, $_POST['email']);
-                    }
-                    
-                    //TODO: insert human other informations
+                    }     
                 );
+
+                $this->model->saveNames([
+                    'user_id' => $userId,
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'updated' => time(),
+                ]);
 
             } catch (\Delight\Auth\InvalidEmailException $e) { //TODO:magage register error messages
                 die('Invalid email address');
@@ -58,6 +62,8 @@ class RegisterService
                 die('User already exists');
             } catch (\Delight\Auth\TooManyRequestsException $e) {
                 die('Too many requests');
+            }finally{
+                Helper::redirect('register');
             }
         }
     }
