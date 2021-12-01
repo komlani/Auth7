@@ -1,5 +1,5 @@
 <?php
-
+//TODO: change de env to prod 
 define('ENVIRONMENT', 'development');
 
 if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {

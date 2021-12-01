@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Title;
 use Auth7\Libs\Helper;
 use Auth7\Services\ChangeEmailService;
 
@@ -18,7 +19,9 @@ class ChangeEmailController
 
     public function index()
     {
-        view('_templates/dashboard/header');
+        view('_templates/dashboard/header',[
+            'pageTitle' => Title::set('Change Email'),
+        ]);
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
         view('dashboard/profile/change-email');

@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Title;
 use Auth7\Libs\Helper;
 use Auth7\Services\ResetPasswordService;
 
@@ -19,7 +20,9 @@ class ResetPasswordController
 
     public function index()
     {
-        view('_templates/auth/header');
+        view('_templates/auth/header',[
+            'pageTitle' => Title::set('Reset Password'),
+        ]);
         view('auth/reset-password',);
         view('_templates/auth/footer');
     }

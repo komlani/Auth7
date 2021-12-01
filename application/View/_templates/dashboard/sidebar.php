@@ -19,11 +19,13 @@
             <div class="menu_section">
               <h3><a class="text-white" href="<?php echo  URL ?>dashboard">Dashboard</a></h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
+                <li><a href="<?php echo URL ?>user"><i class="fa fa-user"></i> Users</span></a>
+                </li>
+                <!-- <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="#">General Form</a></li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>

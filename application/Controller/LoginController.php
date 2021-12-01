@@ -2,6 +2,7 @@
 
 namespace Auth7\Controller;
 
+use Auth7\Libs\Title;
 use Auth7\Libs\Helper;
 use Auth7\Services\LoginService;
 
@@ -18,7 +19,9 @@ class LoginController
 
     public function index()
     {
-        view('_templates/auth/header');
+        view('_templates/auth/header',[
+            'pageTitle' => Title::set('Login'),
+        ]);
         view('auth/login');
         view('_templates/auth/footer');
     }
