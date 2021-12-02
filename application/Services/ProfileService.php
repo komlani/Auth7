@@ -36,8 +36,7 @@ class ProfileService
          * 
          * So we verify their availabily
          * using password_verify() method*/
-        if (password_verify('general_info', $data['edit'])) {
-
+        if (hash_equals(md5('general_info'), $data['edit'])) {
             $validation = (new Validator)->validate($data, [
                 '_token' => 'required|alpha_num',
                 'edit' => 'required',
@@ -61,8 +60,7 @@ class ProfileService
 
                 Helper::redirect('profile/edit/' . $_SESSION['auth7_userId']);
             }
-        } elseif (password_verify('avatar', $data['edit'])) {
-
+        } elseif (hash_equals(md5('avatar'), $data['edit'])) {
             /** superglobal $_FILES is
              * implicitly passed to namageRequest() */
             $validation = (new Validator)->validate($data + $_FILES, [
@@ -97,8 +95,7 @@ class ProfileService
                     exit; //TODO: define saving img error
                 }
             }
-        } elseif (password_verify('password', $data['edit'])) {
-
+        } elseif (hash_equals(md5('password'), $data['edit'])) {
             $validation = (new Validator)->validate($data, [
                 '_token' => 'required|alpha_num',
                 'edit' => 'required',

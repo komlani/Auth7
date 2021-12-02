@@ -37,7 +37,7 @@
                                 <form action="<?php echo URL  ?>profile/update" method="POST">
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="edit" value="<?php echo password_hash('general_info', PASSWORD_DEFAULT) ?>">
+                                    <input type="hidden" name="edit" value="<?php echo md5('general_info') ?>">
 
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>
@@ -130,7 +130,7 @@
                                     </div>
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="edit" value="<?php echo password_hash('avatar', PASSWORD_DEFAULT) ?>">
+                                    <input type="hidden" name="edit" value="<?php echo md5('avatar') ?>">
 
 
                                     <div class="form-group">
@@ -182,7 +182,7 @@
                                 <form action="<?php echo URL  ?>profile/update" method="POST">
 
                                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                                    <input type="hidden" name="edit" value="<?php echo password_hash('password', PASSWORD_DEFAULT) ?>">
+                                    <input type="hidden" name="edit" value="<?php echo md5('password') ?>">
 
                                     <div class="form-group">
                                         <label for="old_password">Old Password</label>

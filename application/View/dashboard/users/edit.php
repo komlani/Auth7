@@ -93,102 +93,146 @@
                                         <div class="x_content">
 
                                             <div class="form-group row">
-
-
                                                 <div class="col-md-12">
+
                                                     <div class="checkbox">
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="ADMIN" class="flat">
+                                                            </div> ADMIN
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="AUTHOR" class="flat">
+                                                            </div> AUTHOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="COLLABORATOR" class="flat">
+                                                            </div> COLLABORATOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="CONSULTANT" class="flat">
+                                                            </div> CONSULTANT
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="CONSUMER" class="flat">
+                                                            </div> CONSUMER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="CONTRIBUTOR" class="flat">
+                                                            </div> CONTRIBUTOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="COORDINATOR" class="flat">
+                                                            </div> COORDINATOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="CREATOR" class="flat">
+                                                            </div> CREATOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="DEVELOPER" class="flat">
+                                                            </div> DEVELOPER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="DIRECTOR" class="flat">
+                                                            </div> DIRECTOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="EDITOR" class="flat">
+                                                            </div> EDITOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="EMPLOYEE" class="flat">
+                                                            </div> EMPLOYEE
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="MAINTAINER" class="flat">
+                                                            </div> MAINTAINER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="MANAGER" class="flat">
+                                                            </div> MANAGER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="MODERATOR" class="flat">
+                                                            </div> MODERATOR
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="PUBLISHER" class="flat">
+                                                            </div> PUBLISHER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
+                                                                <input type="checkbox" name="roles[]" value="REVIEWER" class="flat">
+                                                            </div> REVIEWER
                                                         </label>
+
                                                         <label>
                                                             <div class="icheckbox_flat-green">
-                                                                <input type="checkbox" class="flat">
-                                                            </div> Checked
-                                                        </label>                
+                                                                <input type="checkbox" name="roles[]" value="SUBSCRIBER" class="flat">
+                                                            </div> SUBSCRIBER
+                                                        </label>
+
+                                                        <label>
+                                                            <div class="icheckbox_flat-green">
+                                                                <input type="checkbox" name="roles[]" value="SUPER_ADMIN" class="flat">
+                                                            </div> SUPER ADMIN
+                                                        </label>
+
+                                                        <label>
+                                                            <div class="icheckbox_flat-green">
+                                                                <input type="checkbox" name="roles[]" value="SUPER_EDITOR" class="flat">
+                                                            </div> SUPER EDITOR
+                                                        </label>
+
+                                                        <label>
+                                                            <div class="icheckbox_flat-green">
+                                                                <input type="checkbox" name="roles[]" value="SUPER_MODERATOR" class="flat">
+                                                            </div> SUPER MODERATOR
+                                                        </label>
+
+                                                        <label>
+                                                            <div class="icheckbox_flat-green">
+                                                                <input type="checkbox" name="roles[]" value="TRANSLATOR" class="flat">
+                                                            </div> TRANSLATOR
+                                                        </label>
+
                                                     </div>
+
                                                 </div>
+                                                
                                             </div>
 
                                         </div>

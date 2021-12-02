@@ -2,11 +2,16 @@
 
 namespace Auth7\Controller;
 
-function view(string $file, array $data = []){
+use Auth7\Core\Model;
+use Delight\Auth\Role;
+
+function view(string $file, array $data = [])
+{
     extract($data);
     require sprintf('%sView/%s.php', APP, $file);
 }
 
-function redirect($path) {
+function redirect($path)
+{
     header('location: ' . URL . $path);
 }
