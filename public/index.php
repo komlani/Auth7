@@ -21,16 +21,19 @@ use PHPTokenGenerator\TokenGenerator;
 
 session_start();
 
-/** define session token 
- * if not exist with 30 min lifetime **/
-if (!isset($_SESSION['auth7_token']) && !isset($_SESSION['auth7_token_time'])) {
+function genarateToken(){
     $_SESSION['auth7_token'] = (new TokenGenerator)->generate();
     $_SESSION['auth7_token_time'] = time() + (60 * 30);
 }
 
+/** define session token 
+ * if not exist with 30 min lifetime **/
+if (!isset($_SESSION['auth7_token']) && !isset($_SESSION['auth7_token_time'])) {
+    genarateToken();
+}
+
 if ($_SESSION['auth7_token_time'] <= time()) {
-    $_SESSION['auth7_token'] = (new TokenGenerator)->generate();
-    $_SESSION['auth7_token_time'] = time() + (60 * 30);
+    genarateToken();
 }
 
 $app = new Application();
