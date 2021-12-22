@@ -1,0 +1,32 @@
+<?php 
+/**
+ * ------------------------------------------
+ * Admin can show, add, delete, update users  
+ * ------------------------------------------
+ * - add : first & last name + roles, password: 
+ * auto generated - 8_aplha_numeric_lower_upcases
+ * when added, mail is send to user with message 
+ * to reset this pass
+ * 
+ * ------------------------------
+ * - delete :  send mail to user
+ * 
+ * ----------------------------
+ * - update : general informations -> Nothing
+ *  particular
+ * 
+ * ------------------
+ * - show : admin can show user informations 
+ * included password if user was created by 
+ * user and user has not reset his 
+ * password.
+ * When user created by admin reset is 
+ * password, his pass his not shown
+ * for all users include admins.
+ * 
+ * ------------------
+ * if user added by admin, at first connexion,
+ * he is obliged to reset his password. 
+ * When done, he is deconnected and 
+ * redirect to login interface.
+ * */

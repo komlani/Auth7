@@ -20,17 +20,15 @@
               <h3><a class="text-white" href="<?php echo  URL ?>dashboard">Dashboard</a></h3>
               <ul class="nav side-menu">
 
-                <?php if (isset($canManageUser) && $canManageUser == true ) { ?>
                   <li><a href="<?php echo URL ?>user">
                       <i class="fa fa-user"></i> Users</span></a>
                   </li>
-                <?php } ?>
-                
+
                 <!-- <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="#">General Form</a></li>
                   </ul>
-                </li> -->
+                </li> --> 
               </ul>
             </div>
           </div>

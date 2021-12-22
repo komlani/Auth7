@@ -17,7 +17,7 @@
                 <form action="<?php echo URL  ?>user/store" method="POST">
 
                     <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-
+                    <input type="hidden" name="user_id" value="<?php echo md5($user->id) ?? null ?>">
 
                     <div class="row">
 
@@ -36,7 +36,6 @@
 
                                         <div class="x_content">
 
-
                                             <div class="form-group">
                                                 <label for="first_name">First Name</label>
                                                 <input type="text" name="first_name" value="" id="first_name" class="form-control">
@@ -51,7 +50,7 @@
 
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" name="email" value="" id="email" class="form-control">
+                                                <input type="email" name="email" value="<?php if(isset($_SESSION["validated"]["email"]) || isset($_SESSION["errors"]["email"])){echo $_SESSION["validated"]["email"];}else{ echo $user->email;}?>" id="email" class="form-control">
                                                 <span class="text-danger"><?php echo  $_SESSION['errors']['email'] ?? '' ?></span>
                                             </div>
 

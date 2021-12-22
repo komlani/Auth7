@@ -3,7 +3,6 @@
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
-use Auth7\Libs\Policy;
 use Auth7\Services\UserService;
 
 class UserController
@@ -12,6 +11,7 @@ class UserController
 
     public function __construct()
     {
+        
         $this->service = new UserService();
     }
 
@@ -22,18 +22,22 @@ class UserController
         ]);
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
-        view('dashboard/users/index');
+        view('dashboard/users/index', [
+            'users' => $this->service->all(),
+        ]);
         view('_templates/dashboard/footer');
     }
 
-    public function show($id)
+    public function show($userId)
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('View User'),
         ]);
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
-        view('dashboard/users/show');
+        view('dashboard/users/show', [
+            'user' => $this->service->get($userId),
+        ]);
         view('_templates/dashboard/footer');
     }
 
@@ -53,18 +57,20 @@ class UserController
         $this->service->manageRequest($_POST);
     }
 
-    public function edit($id)
+    public function edit($userId)
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Edit User'),
         ]);
         view('_templates/dashboard/sidebar');
         view('_templates/dashboard/top-navigation');
-        view('dashboard/users/edit');
+        view('dashboard/users/edit', [
+            'user' => $this->service->get($userId),
+        ]);
         view('_templates/dashboard/footer');
     }
 
-    public function delete($id)
+    public function delete($userId)
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Delete User'),

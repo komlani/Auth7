@@ -37,13 +37,13 @@
 
                                             <div class="form-group">
                                                 <label for="first_name">First Name</label>
-                                                <input type="text" name="first_name" value="<?php if (isset($_SESSION['validated']['first_name'])) echo $_SESSION['validated']['first_name'] ?>" id="first_name" class="form-control">
+                                                <input type="text" name="first_name" value="<?php if (isset($_SESSION['validated']['first_name']) || isset($_SESSION['errors']['first_name'])) echo $_SESSION['validated']['first_name'] ?>" id="first_name" class="form-control">
                                                 <span class="text-danger"><?php echo  $_SESSION['errors']['first_name'] ?? '' ?></span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="last_name">Last Name</label>
-                                                <input type="text" name="last_name" value="<?php if (isset($_SESSION['validated']['last_name'])) echo $_SESSION['validated']['last_name'] ?>" id="last_name" class="form-control">
+                                                <input type="text" name="last_name" value="<?php if (isset($_SESSION['validated']['last_name']) || isset($_SESSION['errors']['last_name'])) echo $_SESSION['validated']['last_name'] ?>" id="last_name" class="form-control">
                                                 <span class="text-danger"><?php echo  $_SESSION['errors']['last_name'] ?? '' ?></span>
                                             </div>
 

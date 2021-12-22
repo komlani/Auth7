@@ -32,7 +32,7 @@ class HumanModel extends Model
                 WHERE users.id = :userId";
 
         $query = $this->db->prepare($sql);
-        $parameters = array(':userId' => $userId);
+        $parameters = [':userId' => $userId];
 
         $query->execute($parameters);
 

@@ -14,6 +14,8 @@ class UserService
     public function __construct()
     {
         $this->model = new UserModel();
+        var_dump($this->model->auth->getRoles()); exit;
+        // $this->model->auth->admin()->addRoleForUserById( $this->model->auth->getUserId(), \Delight\Auth\Role::ADMIN);
     }
 
     public function manageRequest($data)
@@ -40,8 +42,23 @@ class UserService
 
             Helper::checkToken();
 
+            /**
+             * genera
+             * insert user info,
+             */
+
             var_dump($data);
             exit;
         }
+    }
+
+    public function all(): array
+    {
+        return $this->model->getAll();
+    }
+
+    public function get($userId): mixed
+    {
+        return $this->model->get($userId);
     }
 }
