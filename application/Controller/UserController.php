@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
@@ -7,15 +9,14 @@ use Auth7\Services\UserService;
 
 class UserController
 {
-    private $service;
+    private UserService $service;
 
     public function __construct()
     {
-        
         $this->service = new UserService();
     }
 
-    public function index()
+    public function index(): void
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Users'),
@@ -28,7 +29,7 @@ class UserController
         view('_templates/dashboard/footer');
     }
 
-    public function show($userId)
+    public function show(int $userId): void
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('View User'),
@@ -41,7 +42,7 @@ class UserController
         view('_templates/dashboard/footer');
     }
 
-    public function create()
+    public function create(): void
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Add User'),
@@ -52,12 +53,12 @@ class UserController
         view('_templates/dashboard/footer');
     }
 
-    public function store()
+    public function store(): void
     {
         $this->service->manageRequest($_POST);
     }
 
-    public function edit($userId)
+    public function edit(int $userId): void
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Edit User'),
@@ -70,7 +71,7 @@ class UserController
         view('_templates/dashboard/footer');
     }
 
-    public function delete($userId)
+    public function delete(int $userId): void
     {
         view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Delete User'),
@@ -81,7 +82,7 @@ class UserController
         view('_templates/dashboard/footer');
     }
 
-    public function destroy()
+    public function destroy(): void
     {
         die('i am ready to destroy');
     }

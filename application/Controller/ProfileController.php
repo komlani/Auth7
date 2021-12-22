@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
@@ -8,7 +10,7 @@ use Auth7\Services\ProfileService;
 
 class ProfileController
 {
-    private $profileService;
+    private ProfileService $profileService;
 
     public function __construct()
     {
@@ -17,9 +19,9 @@ class ProfileController
         $this->profileService = new ProfileService();
     }
 
-    public function index()
+    public function index(): void
     {
-        view('_templates/dashboard/header',[
+        view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Profile'),
         ]);
         view('_templates/dashboard/sidebar');
@@ -30,11 +32,11 @@ class ProfileController
         view('_templates/dashboard/footer');
     }
 
-    public function edit($id)
+    public function edit(int $id): void
     {
         Helper::isMe($id);
 
-        view('_templates/dashboard/header',[
+        view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Edit Profile'),
         ]);
         view('_templates/dashboard/sidebar');
@@ -45,7 +47,7 @@ class ProfileController
         view('_templates/dashboard/footer');
     }
 
-    public function update()
+    public function update(): void
     {
         $this->profileService->manageRequest($_POST);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
@@ -13,12 +15,12 @@ class DashboardController
         Helper::isLoggedOut();
     }
 
-    public function index()
+    public function index(): void
     {
-        view('_templates/dashboard/header',[
+        view('_templates/dashboard/header', [
             'pageTitle' => Title::set('Dashboard'),
         ]);
-        view('_templates/dashboard/sidebar',[
+        view('_templates/dashboard/sidebar', [
             'canManageUser' => Policy::canManageUser(),
         ]);
         view('_templates/dashboard/top-navigation');

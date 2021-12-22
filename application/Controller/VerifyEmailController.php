@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
@@ -8,7 +10,7 @@ use Auth7\Services\VerifyEmailService;
 
 class VerifyEmailController
 {
-    private $service;
+    private VerifyEmailService $service;
 
     public function __construct()
     {
@@ -17,16 +19,16 @@ class VerifyEmailController
         $this->service = new VerifyEmailService();
     }
 
-    public function index()
+    public function index(): void
     {
-        view('_templates/auth/header',[
+        view('_templates/auth/header', [
             'pageTitle' => Title::set('Verify Email'),
         ]);
         view('auth/verify-email');
         view('_templates/auth/footer');
     }
 
-    public function store()
+    public function store(): void
     {
         $this->service->manageRequest($_POST);
     }
