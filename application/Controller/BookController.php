@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Auth7\Controller;
 
 use Auth7\Libs\Title;
+use Auth7\Libs\Helper;
 
 class BookController
 {
     public function __construct()
     {
+        Helper::isLoggedOut();
     }
 
     public function index(): void
