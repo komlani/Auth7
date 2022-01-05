@@ -24,6 +24,10 @@
                       <i class="fa fa-user"></i> Users</span></a>
                   </li>
 
+                  <li><a href="<?php echo URL ?>book">
+                      <i class="fa fa-archive"></i> Books</span></a>
+                  </li>
+
                 <!-- <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="#">General Form</a></li>
