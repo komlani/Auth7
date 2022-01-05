@@ -21,7 +21,6 @@ class BookController
         ]);
         view(file: '_templates/dashboard/sidebar');
         view(file: '_templates/dashboard/top-navigation');
-        view(file: '_templates/dashboard/top-tiles');
         view(file: 'dashboard/books/index', data: []);
         view(file: '_templates/dashboard/footer');
     }
@@ -33,7 +32,6 @@ class BookController
         ]);
         view(file: '_templates/dashboard/sidebar');
         view(file: '_templates/dashboard/top-navigation');
-        view(file: '_templates/dashboard/top-tiles');
         view(file: 'dashboard/books/show');
         view(file: '_templates/dashboard/footer');
     }
@@ -45,7 +43,6 @@ class BookController
         ]);
         view(file: '_templates/dashboard/sidebar');
         view(file: '_templates/dashboard/top-navigation');
-        view(file: '_templates/dashboard/top-tiles');
         view(file: 'dashboard/books/create');
         view(file: '_templates/dashboard/footer');
     }
