@@ -59,7 +59,7 @@ class BookModel extends Model
         return $query->execute($parameters);
     }
 
-    public function update(int $bookId, array $data): bool
+    public function update(array $data): bool
     {
         $sql = "UPDATE
                     books
@@ -70,7 +70,7 @@ class BookModel extends Model
         $query = $this->db->prepare($sql);
         $parameters = [
             ':title' => $data['title'],
-            ':id' => $bookId,
+            ':id' => $data['id'],
         ];
 
         return $query->execute($parameters);
@@ -84,5 +84,23 @@ class BookModel extends Model
         $parameters = [':id' => $bookId];
 
         return $query->execute($parameters);
+    }
+
+    public function exist(int $bookId): mixed
+    {
+        $sql = "SELECT 
+                    id
+                FROM
+                    books
+                WHERE
+                    id = :id
+                LIMIT 1";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = [':id' => $bookId];
+        $query->execute($parameters);
+
+        return $query->fetch();
     }
 }

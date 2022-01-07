@@ -16,23 +16,27 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="<?php echo URL ?>book/destroy" method="post">
+
+                        <form action="<?php echo URL . "book/destroy" ?>" method="POST">
+
                             <input type="hidden" name="_token" value="<?php echo $_SESSION['auth7_token'] ?? '' ?>">
-                            <input type="hidden" name="_token" value="<?php echo $_SESSION['????id'] ?? '' ?>">
+                            <input type="hidden" name="book_id" value="<?php echo $book->id  ?? '' ?>">
 
                             <div class="form-group text-center">
 
                                 <p>
-                                    Do you want to delete this element ?
+                                    Do you want to delete this book: <b> <?php echo $book->title ?? "" ?> </b> ?
                                 </p>
 
-                                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                <button type="submit" class="btn btn-sm btn-primary">Delete</button>
 
                             </div>
 
                         </form>
+
                     </div>
                 </div>
+
             </div>
 
         </div>

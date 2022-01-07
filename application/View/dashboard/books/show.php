@@ -8,11 +8,10 @@
 
                 <div class="row">
                     <div class="col-sm-12 text-left p-3 m-2">
-                        <!-- concanate entity id for edit & delete eg: $book->id -->
-                        <a href="<?php echo URL . 'book/edit/1'  ?>" class="btn btn-sm btn-primary">
+                        <a href="<?php echo URL . 'book/edit/' . $book->id ?? ""  ?>" class="btn btn-sm btn-primary">
                             <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                         </a>
-                        <a href="<?php echo URL . 'book/delete/1' ?>" class="btn btn-sm btn-primary">
+                        <a href="<?php echo URL . 'book/delete/' . $book->id ?? "" ?>" class="btn btn-sm btn-danger">
                             <i class="fa fa-trash" aria-hidden="true"></i> Delete
                         </a>
                         <a href="<?php echo URL ?>book" class="btn btn-sm btn-primary">
@@ -22,6 +21,7 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-md-12">
 
                         <table class="table table-bordered">
@@ -30,7 +30,7 @@
 
                                 <tr>
                                     <td>Title</td>
-                                    <td>Mary</td>
+                                    <td><?php echo $book->title ?? "" ?>
                                 </tr>
 
                             </tbody>
